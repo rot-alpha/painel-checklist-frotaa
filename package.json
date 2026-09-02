@@ -9,7 +9,14 @@
     "dev": "npx serve src",
     "start": "npx serve src"
   },
-  "keywords": ["dashboard", "checklist", "frota"],
+  "keywords": [
+    "dashboard",
+    "checklist",
+    "frota"
+  ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "html-validator": "^6.0.1"
+  }
 }
