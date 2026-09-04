@@ -7,6 +7,7 @@
     <meta name="description" content="Dashboard de checklist diário da frota de veículos — conformidade, quilometragem e análise de reincidência.">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="shortcut icon" href="assets/favicon.png">
     <link rel="apple-touch-icon" href="assets/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,10 +29,85 @@
     <!-- ====== HEADER ====== -->
     <header class="header" id="header">
         <div class="header-inner">
-            <div class="header-left" id="headerBrand" role="button" tabindex="0" title="Car Verify · Início">
-                <div class="header-brand-badge" id="headerBrandBadge">
-                    <img src="assets/logo-car-verify.png" alt="Car Verify" class="brand-logo-img" id="headerBrandImg">
+            <div class="header-left" id="headerBrand" role="button" tabindex="0" title="Voltar à tela inicial">
+                <!-- Animated realistic car wheel SVG + shadow -->
+                <div class="logo-wheel-wrapper" aria-hidden="true">
+                    <div class="logo-wheel-shadow"></div>
+                    <svg class="logo-wheel-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <radialGradient id="mainTireGrad" cx="50%" cy="50%" r="50%">
+                                <stop offset="80%" stop-color="#181c24" />
+                                <stop offset="92%" stop-color="#282f3d" />
+                                <stop offset="100%" stop-color="#0c0e13" />
+                            </radialGradient>
+                            <radialGradient id="mainRimGrad" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="#475569" />
+                                <stop offset="60%" stop-color="#334155" />
+                                <stop offset="85%" stop-color="#94a3b8" />
+                                <stop offset="100%" stop-color="#1e293b" />
+                            </radialGradient>
+                        </defs>
+                        <!-- Disco de freio ventilado (fundo fixo) -->
+                        <circle cx="50" cy="50" r="34" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+                        <!-- Pinça de freio esportiva vermelha -->
+                        <path d="M 22,33 Q 18,50 25,62 L 31,58 Q 26,48 29,37 Z" fill="#EF4444"/>
+                        <!-- Conjunto rotativo da roda -->
+                        <g id="mainWheelSpinGroup">
+                            <!-- Pneu com perfil esportivo -->
+                            <circle cx="50" cy="50" r="46" fill="url(#mainTireGrad)" stroke="#0f172a" stroke-width="2"/>
+                            <!-- Ranhuras do pneu -->
+                            <g stroke="#374151" stroke-width="2" stroke-linecap="round">
+                                <line x1="50" y1="4" x2="50" y2="8" />
+                                <line x1="75" y1="13" x2="72" y2="17" />
+                                <line x1="91" y1="39" x2="87" y2="40" />
+                                <line x1="88" y1="67" x2="84" y2="65" />
+                                <line x1="67" y1="89" x2="65" y2="85" />
+                                <line x1="50" y1="94" x2="50" y2="90" />
+                                <line x1="28" y1="88" x2="30" y2="84" />
+                                <line x1="10" y1="64" x2="14" y2="62" />
+                                <line x1="8" y1="39" x2="12" y2="40" />
+                                <line x1="22" y1="15" x2="25" y2="18" />
+                            </g>
+                            <!-- Aro diamantado dourado -->
+                            <circle cx="50" cy="50" r="37" fill="none" stroke="#F59E0B" stroke-width="1.8" opacity="0.9"/>
+                            <circle cx="50" cy="50" r="35" fill="url(#mainRimGrad)"/>
+                            <!-- 5 Raios esportivos duplos -->
+                            <g fill="#CBD5E1" stroke="#475569" stroke-width="0.8">
+                                <polygon points="48,50 45,18 55,18 52,50"/>
+                                <polygon points="50,48 78,35 83,43 51,52"/>
+                                <polygon points="50,51 68,77 60,83 48,52"/>
+                                <polygon points="49,52 32,83 24,77 48,50"/>
+                                <polygon points="48,49 17,43 22,35 50,48"/>
+                            </g>
+                            <!-- Destaque dourado nos raios -->
+                            <g stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round">
+                                <line x1="50" y1="48" x2="50" y2="20"/>
+                                <line x1="51" y1="50" x2="79" y2="39"/>
+                                <line x1="50" y1="51" x2="64" y2="79"/>
+                                <line x1="49" y1="51" x2="28" y2="79"/>
+                                <line x1="49" y1="50" x2="20" y2="39"/>
+                            </g>
+                            <!-- Centro e parafusos -->
+                            <circle cx="50" cy="50" r="11" fill="#0F172A" stroke="#F59E0B" stroke-width="1.5"/>
+                            <circle cx="50" cy="43" r="1.8" fill="#FFFFFF"/>
+                            <circle cx="56" cy="48" r="1.8" fill="#FFFFFF"/>
+                            <circle cx="54" cy="55" r="1.8" fill="#FFFFFF"/>
+                            <circle cx="46" cy="55" r="1.8" fill="#FFFFFF"/>
+                            <circle cx="44" cy="48" r="1.8" fill="#FFFFFF"/>
+                            <circle cx="50" cy="50" r="4.5" fill="#F59E0B"/>
+                        </g>
+                    </svg>
                 </div>
+                <!-- Letter-by-letter brand name -->
+                <span class="logo-text" aria-label="Car Verify">
+                    <span class="logo-word" id="logoWordCar">
+                        <span class="logo-char">C</span><span class="logo-char">A</span><span class="logo-char">R</span>
+                    </span>
+                    <span class="logo-separator" aria-hidden="true"></span>
+                    <span class="logo-word" id="logoWordVerify">
+                        <span class="logo-char">V</span><span class="logo-char">E</span><span class="logo-char">R</span><span class="logo-char">I</span><span class="logo-char">F</span><span class="logo-char">Y</span>
+                    </span>
+                </span>
             </div>
 
             <!-- Navigation buttons -->
@@ -415,28 +491,70 @@
     <script src="js/pptx-export.js"></script>
     <script src="js/app.js"></script>
 
-    <!-- CAR VERIFY — Official Logo Entrance & Click Animation (GSAP) -->
+    <!-- CAR VERIFY — Logo entrance animation (GSAP + Motion Design) -->
     <script>
     (function () {
+        let logoTimeline = null;
+
         window.playCarVerifyLogoAnimation = function() {
             if (typeof gsap === 'undefined') return;
-            const badge = document.getElementById('headerBrandBadge');
-            const img = document.getElementById('headerBrandImg');
-            if (!badge || !img) return;
+            if (logoTimeline) logoTimeline.kill();
 
-            // Animação de entrada suave e sofisticada (Corporate / Premium)
-            gsap.timeline()
-                .fromTo(badge, 
-                    { scale: 0.9, opacity: 0, y: -4 },
-                    { scale: 1, opacity: 1, y: 0, duration: 0.55, ease: "back.out(1.8)" }
-                )
-                .fromTo(img,
-                    { filter: "brightness(1.4) drop-shadow(0 0 10px rgba(245,158,11,0.5))" },
-                    { filter: "brightness(1) drop-shadow(0 0 0px transparent)", duration: 0.45, ease: "power1.out" },
-                    "-=0.2"
+            const wheelWrapper = document.querySelector('#headerBrand .logo-wheel-wrapper');
+            const wheelSpinner = document.querySelector('#headerBrand #mainWheelSpinGroup');
+            const shadow       = document.querySelector('#headerBrand .logo-wheel-shadow');
+            const logoText     = document.querySelector('#headerBrand .logo-text');
+
+            if (!wheelWrapper || !logoText) return;
+
+            // Posição inicial: roda fora da área à esquerda, texto mascarado
+            gsap.set(wheelWrapper, { x: -65, opacity: 0 });
+            if (wheelSpinner) gsap.set(wheelSpinner, { rotation: 0, transformOrigin: "50px 50px" });
+            if (shadow) gsap.set(shadow, { scaleX: 0.3, opacity: 0 });
+            gsap.set(logoText, { clipPath: "inset(0 100% 0 0)", opacity: 1 });
+
+            logoTimeline = gsap.timeline({ delay: 0.15 });
+
+            logoTimeline
+                .to(wheelWrapper, { opacity: 1, duration: 0.1 }, 0)
+                .to(shadow, { opacity: 0.8, scaleX: 1, duration: 0.3 }, 0)
+                // A roda rola da esquerda passando por cima do texto e revelando-o dinamicamente
+                .fromTo(wheelWrapper,
+                    { x: -65 },
+                    {
+                        x: 180,
+                        duration: 0.95,
+                        ease: "power2.inOut",
+                        onUpdate: function() {
+                            const p = this.progress();
+                            // Conforme a roda avança entre 20% e 80%, desmascara o texto "CAR VERIFY"
+                            let revealPercent = gsap.utils.clamp(0, 100, (p - 0.20) / 0.65 * 100);
+                            logoText.style.clipPath = `inset(0 ${100 - revealPercent}% 0 0)`;
+                        }
+                    }, 0)
+                // Rotação física sincronizada (720 graus = 2 voltas para ~245px)
+                .fromTo(wheelSpinner,
+                    { rotation: 0 },
+                    { rotation: 720, duration: 0.95, ease: "power2.inOut" }, 0)
+                // A roda retorna estacionando na posição oficial de logo
+                .to(wheelWrapper, {
+                    x: 0,
+                    duration: 0.65,
+                    ease: "power3.out"
+                }, "+=0.08")
+                .to(wheelSpinner, {
+                    rotation: 180,
+                    duration: 0.65,
+                    ease: "power3.out"
+                }, "<")
+                // Brilho dourado de finalização na tipografia
+                .fromTo(logoText,
+                    { filter: "brightness(1.5)" },
+                    { filter: "brightness(1)", duration: 0.4, ease: "power1.out" }
                 );
         };
 
+        // Permite clicar na marca no header para rever a animação
         const brandBtn = document.getElementById('headerBrand');
         if (brandBtn) {
             brandBtn.addEventListener('click', () => {
@@ -444,10 +562,15 @@
             });
         }
 
+        // Executa ao carregar a página (respeitando acessibilidade)
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             window.addEventListener('DOMContentLoaded', () => {
-                setTimeout(window.playCarVerifyLogoAnimation, 150);
+                setTimeout(window.playCarVerifyLogoAnimation, 200);
             });
+        } else {
+            // Se o usuário tiver preferência por menos movimento, mostra direto
+            const logoText = document.querySelector('#headerBrand .logo-text');
+            if (logoText) logoText.style.clipPath = "none";
         }
     })();
     </script>
