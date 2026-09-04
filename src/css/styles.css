@@ -180,17 +180,36 @@ button {
 
 /* ── Animated CAR VERIFY logo ─────────────────────────────────── */
 .logo-wheel-wrapper {
+    position: relative;
     display: flex;
     align-items: center;
     flex-shrink: 0;
     overflow: visible;
 }
 
+.logo-wheel-shadow {
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 6px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    filter: blur(2px);
+    will-change: transform, opacity;
+}
+
+[data-theme="dark"] .logo-wheel-shadow {
+    background: rgba(0, 0, 0, 0.6);
+}
+
 .logo-wheel-svg {
-    width: 32px;
-    height: 32px;
+    position: relative;
+    width: 36px;
+    height: 36px;
     flex-shrink: 0;
-    transform-origin: center center;
+    transform-origin: 50% 50%;
     will-change: transform, opacity;
 }
 
@@ -200,6 +219,7 @@ button {
     gap: 4px;
     white-space: nowrap;
     overflow: visible;
+    will-change: clip-path, filter;
 }
 
 .logo-word {
