@@ -1,7 +1,7 @@
 {
-  "name": "painel-checklist-frota",
+  "name": "car-verify",
   "version": "1.0.0",
-  "description": "Dashboard de Checklist da Frota de Veículos",
+  "description": "Car Verify — Dashboard de verificação e checklist da frota de veículos",
   "main": "src/index.html",
   "scripts": {
     "build": "node execution/sync_sheets.js",

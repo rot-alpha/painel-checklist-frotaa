@@ -178,16 +178,66 @@ button {
     transform: translateY(-1px);
 }
 
-.logo-icon {
-    font-size: 28px;
-    color: var(--clr-primary);
+/* ── Animated CAR VERIFY logo ─────────────────────────────────── */
+.logo-wheel-wrapper {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    overflow: visible;
+}
+
+.logo-wheel-svg {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    transform-origin: center center;
+    will-change: transform, opacity;
 }
 
 .logo-text {
-    font-size: var(--font-size-md);
-    font-weight: 700;
-    color: var(--clr-text);
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
     white-space: nowrap;
+    overflow: visible;
+}
+
+.logo-word {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0;
+}
+
+.logo-char {
+    display: inline-block;
+    font-size: var(--font-size-md);
+    font-weight: 800;
+    color: var(--clr-text);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    will-change: transform, opacity;
+}
+
+/* "CAR" in primary accent, "VERIFY" in text color */
+#logoWordCar .logo-char {
+    color: var(--clr-primary);
+}
+
+#logoWordVerify .logo-char {
+    color: var(--clr-text);
+}
+
+/* thin dot separator between CAR · VERIFY */
+.logo-separator {
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--clr-primary);
+    margin: 0 3px 2px;
+    flex-shrink: 0;
+    transform-origin: center;
+    will-change: transform, opacity;
 }
 
 /* Vehicle Tabs (Plates Selector) */

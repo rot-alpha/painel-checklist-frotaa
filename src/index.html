@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Checklist Frota</title>
+    <title>Car Verify</title>
     <meta name="description" content="Dashboard de checklist diário da frota de veículos — conformidade, quilometragem e análise de reincidência.">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <link rel="stylesheet" href="css/styles.css">
     <script>
         (function() {
@@ -28,8 +29,34 @@
     <header class="header" id="header">
         <div class="header-inner">
             <div class="header-left" id="headerBrand" role="button" tabindex="0" title="Voltar à tela inicial">
-                <span class="material-icons-round logo-icon">local_shipping</span>
-                <span class="logo-text">Checklist Frota</span>
+                <!-- Animated wheel SVG -->
+                <div class="logo-wheel-wrapper" aria-hidden="true">
+                    <svg class="logo-wheel-svg" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Tyre -->
+                        <circle cx="20" cy="20" r="18" fill="none" stroke="var(--clr-primary)" stroke-width="3.5"/>
+                        <!-- Hub -->
+                        <circle cx="20" cy="20" r="5" fill="var(--clr-primary)"/>
+                        <!-- Spokes -->
+                        <line x1="20" y1="2" x2="20" y2="15" stroke="var(--clr-primary)" stroke-width="2.5" stroke-linecap="round"/>
+                        <line x1="20" y1="25" x2="20" y2="38" stroke="var(--clr-primary)" stroke-width="2.5" stroke-linecap="round"/>
+                        <line x1="2" y1="20" x2="15" y2="20" stroke="var(--clr-primary)" stroke-width="2.5" stroke-linecap="round"/>
+                        <line x1="25" y1="20" x2="38" y2="20" stroke="var(--clr-primary)" stroke-width="2.5" stroke-linecap="round"/>
+                        <line x1="5.4" y1="5.4" x2="14.6" y2="14.6" stroke="var(--clr-primary)" stroke-width="2.5" stroke-linecap="round"/>
+                        <line x1="25.4" y1="25.4" x2="34.6" y2="34.6" stroke="var(--clr-primary)" stroke-width="2.5" stroke-linecap="round"/>
+                        <line x1="34.6" y1="5.4" x2="25.4" y2="14.6" stroke="var(--clr-primary)" stroke-width="2.5" stroke-linecap="round"/>
+                        <line x1="14.6" y1="25.4" x2="5.4" y2="34.6" stroke="var(--clr-primary)" stroke-width="2.5" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <!-- Letter-by-letter brand name -->
+                <span class="logo-text" aria-label="Car Verify">
+                    <span class="logo-word" id="logoWordCar">
+                        <span class="logo-char">C</span><span class="logo-char">A</span><span class="logo-char">R</span>
+                    </span>
+                    <span class="logo-separator" aria-hidden="true"></span>
+                    <span class="logo-word" id="logoWordVerify">
+                        <span class="logo-char">V</span><span class="logo-char">E</span><span class="logo-char">R</span><span class="logo-char">I</span><span class="logo-char">F</span><span class="logo-char">Y</span>
+                    </span>
+                </span>
             </div>
 
             <!-- Navigation buttons -->
@@ -412,5 +439,81 @@
     <script src="js/charts.js"></script>
     <script src="js/pptx-export.js"></script>
     <script src="js/app.js"></script>
+
+    <!-- CAR VERIFY — Logo entrance animation (GSAP) -->
+    <script>
+    (function () {
+        const mm = gsap.matchMedia();
+
+        mm.add(
+            { reduceMotion: '(prefers-reduced-motion: reduce)' },
+            (ctx) => {
+                const { reduceMotion } = ctx.conditions;
+                if (reduceMotion) return; // skip all animation for accessibility
+
+                const wheel   = document.querySelector('.logo-wheel-svg');
+                const chars   = document.querySelectorAll('#headerBrand .logo-char');
+                const sepEl   = document.querySelector('#headerBrand .logo-separator');
+
+                // ── starting state ──────────────────────────────────────────
+                // Wheel starts far left, off-screen relative to brand
+                gsap.set(wheel,  { x: -90, rotation: -360, autoAlpha: 0 });
+                gsap.set(chars,  { autoAlpha: 0, y: 10 });
+                gsap.set(sepEl,  { autoAlpha: 0, scaleX: 0 });
+
+                // ── timeline ────────────────────────────────────────────────
+                const tl = gsap.timeline({ delay: 0.25 });
+
+                // 1. Wheel rolls in from left
+                tl.to(wheel, {
+                    x: 0,
+                    rotation: 0,
+                    autoAlpha: 1,
+                    duration: 0.75,
+                    ease: 'power3.out'
+                })
+
+                // 2. Wheel does a final proud spin and slightly bounces in scale
+                .to(wheel, {
+                    rotation: '+=360',
+                    scale: 1.12,
+                    duration: 0.45,
+                    ease: 'power2.inOut'
+                })
+                .to(wheel, {
+                    scale: 1,
+                    duration: 0.25,
+                    ease: 'back.out(2)'
+                })
+
+                // 3. "CAR" letters pop in staggered
+                .to('#logoWordCar .logo-char', {
+                    autoAlpha: 1,
+                    y: 0,
+                    duration: 0.3,
+                    stagger: 0.07,
+                    ease: 'back.out(2.5)'
+                }, '-=0.1')
+
+                // 4. separator dot grows
+                .to(sepEl, {
+                    autoAlpha: 1,
+                    scaleX: 1,
+                    duration: 0.15,
+                    ease: 'power1.out'
+                }, '-=0.05')
+
+                // 5. "VERIFY" letters cascade in
+                .to('#logoWordVerify .logo-char', {
+                    autoAlpha: 1,
+                    y: 0,
+                    duration: 0.32,
+                    stagger: 0.055,
+                    ease: 'back.out(2)'
+                }, '-=0.08');
+            }
+        );
+    })();
+    </script>
 </body>
 </html>

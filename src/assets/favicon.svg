@@ -1,91 +1,82 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <!-- Silver Metallic Gradients -->
-    <linearGradient id="silver-outer" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#E0E0E0" />
-      <stop offset="25%" stop-color="#F5F5F5" />
-      <stop offset="50%" stop-color="#9E9E9E" />
-      <stop offset="75%" stop-color="#EEEEEE" />
-      <stop offset="100%" stop-color="#757575" />
-    </linearGradient>
-
-    <radialGradient id="silver-face" cx="35%" cy="30%" r="70%">
-      <stop offset="0%" stop-color="#FFFFFF" />
-      <stop offset="40%" stop-color="#E0E0E0" />
-      <stop offset="70%" stop-color="#BDBDBD" />
-      <stop offset="100%" stop-color="#757575" />
+    <radialGradient id="bg" cx="50%" cy="38%" r="70%">
+      <stop offset="0%" stop-color="#162744"/>
+      <stop offset="100%" stop-color="#0A1520"/>
     </radialGradient>
-
-    <!-- Metallic Green Checkmark Gradients -->
-    <linearGradient id="green-metallic" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#4CAF50" />
-      <stop offset="40%" stop-color="#2E7D32" />
-      <stop offset="80%" stop-color="#1B5E20" />
-      <stop offset="100%" stop-color="#0D3B11" />
-    </linearGradient>
-
-    <linearGradient id="green-bevel" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#81C784" />
-      <stop offset="100%" stop-color="#1B5E20" />
-    </linearGradient>
-
-    <filter id="drop-shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000000" flood-opacity="0.4"/>
-      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.25"/>
-    </filter>
-
-    <filter id="check-shadow">
-      <feDropShadow dx="2" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.4"/>
-    </filter>
+    <clipPath id="rounded">
+      <rect width="512" height="512" rx="110" ry="110"/>
+    </clipPath>
   </defs>
 
-  <!-- Outer Shadow & Metallic Rim -->
-  <circle cx="256" cy="256" r="230" fill="url(#silver-outer)" filter="url(#drop-shadow)" />
-  <circle cx="256" cy="256" r="215" fill="#424242" />
-  <circle cx="256" cy="256" r="210" fill="url(#silver-outer)" />
-  <circle cx="256" cy="256" r="195" fill="#616161" />
+  <!-- Background -->
+  <rect width="512" height="512" rx="110" ry="110" fill="url(#bg)"/>
 
-  <!-- Inner Metallic Face -->
-  <circle cx="256" cy="256" r="190" fill="url(#silver-face)" />
+  <!-- ===== FIORINO SILHOUETTE ===== -->
+  <g clip-path="url(#rounded)" fill="#FF6B1A">
 
-  <!-- Circular Brushed Texture Ring -->
-  <circle cx="256" cy="256" r="190" fill="none" stroke="#FFFFFF" stroke-opacity="0.3" stroke-width="2" />
-  <circle cx="256" cy="256" r="160" fill="none" stroke="#000000" stroke-opacity="0.08" stroke-width="1.5" />
-  <circle cx="256" cy="256" r="130" fill="none" stroke="#FFFFFF" stroke-opacity="0.2" stroke-width="1.5" />
+    <!-- Main body: boxy van shape -->
+    <path d="
+      M 68 315
+      L 68 290
+      Q 68 275 78 268
+      L 100 258
+      Q 112 235 135 222
+      L 175 212
+      Q 188 208 205 208
+      L 390 208
+      Q 408 208 418 220
+      L 432 240
+      Q 442 252 444 268
+      L 444 315
+      Z
+    "/>
 
-  <!-- 3D Metallic Beveled Green Checkmark -->
-  <g filter="url(#check-shadow)">
-    <!-- Outer Dark Bevel Rim of Checkmark -->
-    <path d="M 160,250 L 230,325 L 350,175" 
-          fill="none" 
-          stroke="#0D3B11" 
-          stroke-width="56" 
-          stroke-linecap="round" 
-          stroke-linejoin="round" />
-          
-    <!-- Silver Border around Checkmark -->
-    <path d="M 160,250 L 230,325 L 350,175" 
-          fill="none" 
-          stroke="url(#silver-outer)" 
-          stroke-width="48" 
-          stroke-linecap="round" 
-          stroke-linejoin="round" />
+    <!-- Cabin window cut (dark) — front cab area -->
+    <path d="
+      M 120 258
+      Q 128 238 148 226
+      L 198 216
+      L 198 258
+      Z
+    " fill="#0A1520"/>
 
-    <!-- Main Green Body -->
-    <path d="M 160,250 L 230,325 L 350,175" 
-          fill="none" 
-          stroke="url(#green-metallic)" 
-          stroke-width="40" 
-          stroke-linecap="round" 
-          stroke-linejoin="round" />
+    <!-- Sliding door window cut (dark) -->
+    <rect x="210" y="218" width="80" height="48" rx="5" fill="#0A1520"/>
 
-    <!-- Top Highlight Bevel -->
-    <path d="M 160,250 L 230,325 L 350,175" 
-          fill="none" 
-          stroke="url(#green-bevel)" 
-          stroke-width="16" 
-          stroke-linecap="round" 
-          stroke-linejoin="round" 
-          opacity="0.75" />
+    <!-- Rear cargo panel — solid (no window) — already part of body -->
+
+    <!-- Front bumper detail -->
+    <rect x="68" y="295" width="28" height="22" rx="4" fill="#0A1520"/>
+
+    <!-- Windshield pillar line (A-pillar) -->
+    <rect x="198" y="208" width="8" height="60" rx="2" fill="#0A1520"/>
+
+    <!-- B-pillar -->
+    <rect x="290" y="208" width="8" height="70" rx="2" fill="#0A1520"/>
+
   </g>
+
+  <!-- Rear wheel -->
+  <circle cx="378" cy="322" r="42" fill="#FF6B1A"/>
+  <circle cx="378" cy="322" r="24" fill="#0A1520"/>
+
+  <!-- Front wheel (hidden behind badge, draw partial) -->
+  <circle cx="150" cy="322" r="42" fill="#FF6B1A"/>
+  <circle cx="150" cy="322" r="24" fill="#0A1520"/>
+
+  <!-- ===== CHECKMARK BADGE (overlaps front wheel) ===== -->
+  <!-- Outer filled circle (navy) -->
+  <circle cx="150" cy="322" r="68" fill="#0D1B2A"/>
+  <!-- Blue ring -->
+  <circle cx="150" cy="322" r="68" fill="none" stroke="#00A8FF" stroke-width="13"/>
+  <!-- White checkmark -->
+  <polyline
+    points="116,322 140,348 188,296"
+    fill="none"
+    stroke="white"
+    stroke-width="17"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
 </svg>
