@@ -178,86 +178,48 @@ button {
     transform: translateY(-1px);
 }
 
-/* ── Animated CAR VERIFY logo ─────────────────────────────────── */
-.logo-wheel-wrapper {
-    position: relative;
-    display: flex;
+/* ── Official CAR VERIFY Brand Logo (Adaptive across all themes) ── */
+.header-brand-badge {
+    display: inline-flex;
     align-items: center;
-    flex-shrink: 0;
-    overflow: visible;
+    justify-content: center;
+    padding: 3px 8px;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
 }
 
-.logo-wheel-shadow {
-    position: absolute;
-    bottom: -4px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 24px;
-    height: 6px;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 50%;
-    filter: blur(2px);
-    will-change: transform, opacity;
+.header-brand-badge:hover {
+    transform: translateY(-1px);
 }
 
-[data-theme="dark"] .logo-wheel-shadow {
-    background: rgba(0, 0, 0, 0.6);
+.brand-logo-img {
+    height: 38px;
+    width: auto;
+    max-width: 170px;
+    object-fit: contain;
+    display: block;
+    transition: filter var(--transition-fast), transform var(--transition-fast);
 }
 
-.logo-wheel-svg {
-    position: relative;
-    width: 36px;
-    height: 36px;
-    flex-shrink: 0;
-    transform-origin: 50% 50%;
-    will-change: transform, opacity;
+/* Fundo adaptativo para Tema Claro */
+[data-theme="light"] .header-brand-badge {
+    background: transparent;
+    border: 1px solid transparent;
+    box-shadow: none;
 }
 
-.logo-text {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 4px;
-    white-space: nowrap;
-    overflow: visible;
-    will-change: clip-path, filter;
+/* Fundo adaptativo para Tema Escuro */
+[data-theme="dark"] .header-brand-badge {
+    background: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.35), 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
-.logo-word {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 0;
-}
-
-.logo-char {
-    display: inline-block;
-    font-size: var(--font-size-md);
-    font-weight: 800;
-    color: var(--clr-text);
-    letter-spacing: 0.04em;
-    line-height: 1;
-    will-change: transform, opacity;
-}
-
-/* "CAR" in primary accent, "VERIFY" in text color */
-#logoWordCar .logo-char {
-    color: var(--clr-primary);
-}
-
-#logoWordVerify .logo-char {
-    color: var(--clr-text);
-}
-
-/* thin dot separator between CAR · VERIFY */
-.logo-separator {
-    display: inline-block;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: var(--clr-primary);
-    margin: 0 3px 2px;
-    flex-shrink: 0;
-    transform-origin: center;
-    will-change: transform, opacity;
+[data-theme="dark"] .header-brand-badge:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45), 0 0 8px rgba(245, 158, 11, 0.3);
 }
 
 /* Vehicle Tabs (Plates Selector) */
